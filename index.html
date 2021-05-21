@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Easing</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      select,
+      label,
+      input,
+      output {
+        position: absolute;
+        top: 0;
+      }
+      /* .cubicBezier {
+        visibility: hidden;
+      }
+      select:has(.cubicBezierOption:checked) + .cubicBezier {
+        visibility: visible;
+      } */
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <form action="get">
+      <select id="select">
+        <option value="Linear">Linear</option>
+        <option value="InSine">InSine</option>
+        <option value="OutSine">OutSine</option>
+        <option value="InOutSine">InOutSine</option>
+        <option value="InQuad">InQuad</option>
+        <option value="OutQuad">OutQuad</option>
+        <option value="InOutQuad">InOutQuad</option>
+        <option value="InCubic">InCubic</option>
+        <option value="OutCubic">OutCubic</option>
+        <option value="InOutCubic">InOutCubic</option>
+        <option value="InQuart">InQuart</option>
+        <option value="OutQuart">OutQuart</option>
+        <option value="InOutQuart">InOutQuart</option>
+        <option value="InQuint">InQuint</option>
+        <option value="OutQuint">OutQuint</option>
+        <option value="InOutQuint">InOutQuint</option>
+        <option value="InExpo">InExpo</option>
+        <option value="OutExpo">OutExpo</option>
+        <option value="InOutExpo">InOutExpo</option>
+        <option value="InCirc">InCirc</option>
+        <option value="OutCirc">OutCirc</option>
+        <option value="InOutCirc">InOutCirc</option>
+        <option value="InBack">InBack</option>
+        <option value="OutBack">OutBack</option>
+        <option value="InOutBack">InOutBack</option>
+        <option value="InElastic">InElastic</option>
+        <option value="OutElastic">OutElastic</option>
+        <option value="InOutElastic">InOutElastic</option>
+        <option value="InBounce">InBounce</option>
+        <option value="OutBounce">OutBounce</option>
+        <option value="InOutBounce">InOutBounce</option>
+        <option class="cubicBezierOption" value="cubicBezier" selected>
+          cubicBezier
+        </option>
+      </select>
+
+      <label class="cubicBezier" for="p1x" style="top: 20px; left: 0px"
+        >X1</label
+      >
+      <input
+        class="cubicBezier"
+        id="p1x"
+        type="range"
+        style="top: 20px; left: 30px"
+        min="0"
+        max="1"
+        step="0.01"
+        value="0.17"
+        onchange="p1xVal.value = this.value"
+      />
+      <output class="cubicBezier" name="p1xVal" style="top: 20px; left: 160px"
+        >0.17</output
+      >
+
+      <label class="cubicBezier" for="p1y" style="top: 40px; left: 0px"
+        >Y1</label
+      >
+      <input
+        class="cubicBezier"
+        id="p1y"
+        type="range"
+        style="top: 40px; left: 30px"
+        min="-2"
+        max="2"
+        step="0.01"
+        value="0.67"
+        onchange="p1yVal.value = this.value"
+      />
+      <output class="cubicBezier" name="p1yVal" style="top: 40px; left: 160px"
+        >0.67</output
+      >
+
+      <label class="cubicBezier" for="p2x" style="top: 60px; left: 0px"
+        >X2</label
+      >
+      <input
+        class="cubicBezier"
+        id="p2x"
+        type="range"
+        style="top: 60px; left: 30px"
+        min="0"
+        max="1"
+        step="0.01"
+        value="0.83"
+        onchange="p2xVal.value = this.value"
+      />
+      <output class="cubicBezier" name="p2xVal" style="top: 60px; left: 160px"
+        >0.83</output
+      >
+
+      <label class="cubicBezier" for="p2y" style="top: 80px; left: 0px"
+        >Y2</label
+      >
+      <input
+        class="cubicBezier"
+        id="p2y"
+        type="range"
+        style="top: 80px; left: 30px"
+        min="-2"
+        max="2"
+        step="0.01"
+        value="0.67"
+        onchange="p2yVal.value = this.value"
+      />
+      <output class="cubicBezier" name="p2yVal" style="top: 80px; left: 160px"
+        >0.67</output
+      >
+
+      <label for="duration" style="left: 140px">Duration</label>
+      <input
+        id="duration"
+        type="range"
+        style="left: 200px"
+        min="500"
+        max="10000"
+        step="100"
+        value="1000"
+        onchange="durationVal.value = this.value"
+      />
+      <output name="durationVal" style="left: 330px">1000</output>
+
+      <label for="delay" style="left: 400px">Delay</label>
+      <input
+        id="delay"
+        type="range"
+        style="left: 460px"
+        min="-3000"
+        max="3000"
+        step="100"
+        value="0"
+        onchange="delayVal.value = this.value"
+      />
+      <output name="delayVal" style="left: 590px">0</output>
+
+      <label for="easeTop" style="left: 630px">Top</label>
+      <input
+        id="easeTop"
+        type="range"
+        style="left: 660px"
+        min="0"
+        max="1000"
+        step="100"
+        value="200"
+        onchange="topVal.value = -this.value"
+      />
+      <output name="topVal" style="left: 790px">200</output>
+
+      <label for="easeHeight" style="top: 20px; left: 630px">Height</label>
+      <input
+        id="easeHeight"
+        type="range"
+        style="top: 20px; left: 660px"
+        min="0"
+        max="1000"
+        step="100"
+        value="500"
+        onchange="heightVal.value = this.value"
+      />
+      <output name="heightVal" style="top: 20px; left: 790px">500</output>
+
+      <label for="easeLeft" style="left: 830px">Left</label>
+      <input
+        id="easeLeft"
+        type="range"
+        style="left: 860px"
+        min="0"
+        max="1600"
+        step="100"
+        value="500"
+        onchange="leftVal.value = this.value"
+      />
+      <output name="leftVal" style="left: 990px">500</output>
+
+      <label for="easeWidth" style="top: 20px; left: 830px">Width</label>
+      <input
+        id="easeWidth"
+        type="range"
+        style="top: 20px; left: 860px"
+        min="0"
+        max="1600"
+        step="100"
+        value="500"
+        onchange="widthVal.value = this.value"
+      />
+      <output name="widthVal" style="top: 20px; left: 990px">500</output>
+    </form>
+    <script src="./easing.js"></script>
+    <script src="./main.js"></script>
+  </body>
+</html>
